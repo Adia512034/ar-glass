@@ -62,10 +62,10 @@ public class TextureClickManager : MonoBehaviour
 
     private void DragObject(Vector2 screenPosition)
     {
+        Camera canvasCamera = renderTextureUI.GetComponentInParent<Canvas>().worldCamera;
         // Debug.Log("in  DragObject");
-        Debug.Log("renderCamera " + renderCamera) ;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTextureUI, screenPosition, renderCamera, out Vector2 localPoint))
-        // if (RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTextureUI, screenPosition, null, out Vector2 localPoint))
+        // Debug.Log("renderCamera " + renderCamera) ;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTextureUI, screenPosition, canvasCamera, out Vector2 localPoint))
         {
             Debug.Log("in  DragObject2");
             Vector2 renderTextureSize = renderTextureUI.sizeDelta;
