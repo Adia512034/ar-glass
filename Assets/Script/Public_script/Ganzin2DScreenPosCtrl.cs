@@ -41,7 +41,7 @@ public class Ganzin2DScreenPosCtrl : MonoBehaviour
         IEyetracker eyetracker = EyetrackerManager.GetEyetracker() as IEyetracker;
         if (eyetracker.Status != IEyetracker.EyetrackerStatus.ACTIVE)
         {
-            Debug.Log("IEyetracker test open fail");
+            // Debug.Log("IEyetracker test open fail");
             return;
         }
 
@@ -77,9 +77,9 @@ public class Ganzin2DScreenPosCtrl : MonoBehaviour
             }
             else
             {
-                Debug.Log("get eye position fail ");
+                // Debug.Log("get eye position fail ");
             }
         }
-        Debug.Log("Hit position: " + position);
+        // Debug.Log("Hit position: " + position);
     }
 }

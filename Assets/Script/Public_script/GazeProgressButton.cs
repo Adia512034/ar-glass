@@ -22,7 +22,7 @@ public class GazeProgressButton : MonoBehaviour
     {
         // currentGazePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); // 用鼠標位置模擬
         currentGazePosition = Ganzin2DScreenPosCtrl.CurrentGazePosition; // 用眼動儀數據模擬
-        Debug.Log("currentGazePosition :" + currentGazePosition);
+        // Debug.Log("currentGazePosition :" + currentGazePosition);
     }
 
     private void CheckGazeButton()
