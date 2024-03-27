@@ -10,6 +10,7 @@ public class TextureClickManager : MonoBehaviour
     private bool isDragging = false;
     private GameObject selectedObject; // 当前选中的可拖拽物体
     private Vector3 offset;
+    private float originalY;
 
     void Update()
     {
@@ -55,6 +56,7 @@ public class TextureClickManager : MonoBehaviour
             isDragging = true;
             selectedObject = hit.collider.gameObject;
             offset = selectedObject.transform.position - hit.point;
+            originalY = hit.collider.gameObject.transform.position.y;
         }
     }
 }
@@ -67,7 +69,7 @@ public class TextureClickManager : MonoBehaviour
         // Debug.Log("renderCamera " + renderCamera) ;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTextureUI, screenPosition, canvasCamera, out Vector2 localPoint))
         {
-            Debug.Log("in  DragObject2");
+            // Debug.Log("in  DragObject2");
             Vector2 renderTextureSize = renderTextureUI.sizeDelta;
             Vector2 normalizedPoint = new Vector2((localPoint.x / renderTextureSize.x) + 0.5f, (localPoint.y / renderTextureSize.y) + 0.5f);
 
@@ -75,6 +77,7 @@ public class TextureClickManager : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, draggableLayer))
             {
                 Vector3 newPosition = hit.point + offset;
+                newPosition.y = originalY;
                 selectedObject.transform.position = newPosition;
             }
         }

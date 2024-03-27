@@ -9,11 +9,11 @@ public class AddImagesToList : MonoBehaviour
     {
         if (Item_list.activeInHierarchy)
         {
-            Item_list.active = false;
+            Item_list.SetActive(false);
         }
         else
         {
-            Item_list.active = true;
+            Item_list.SetActive(true);
         }
     }
 

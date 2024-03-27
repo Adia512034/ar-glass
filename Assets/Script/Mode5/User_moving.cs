@@ -33,36 +33,37 @@ public class User_moving : MonoBehaviour
         // // 旋轉攝影機
         // transform.Rotate(gyroRotationAmount, Space.World);
         ////////////////////////////////////////////////////////////////////////////////////////
-        if (moving_on)
-        {
-            Vector3 gyroRotationRate = new Vector3(SensorExample.GYROX, SensorExample.GYROY, SensorExample.GYROZ);
-            // 增加一个缩放系数，例如 10.0f，您可以根据需要调整这个值
-            float scale = 100.0f;
-            Quaternion targetRotation = Quaternion.Euler(gyroRotationRate * scale * Time.deltaTime * Mathf.Rad2Deg);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5); // 使用Slerp平滑旋
-        
-            
-            float speed = 100.0f;
-            // 將加速度轉換為移動向量，這裡乘以Time.deltaTime是為了使移動速度獨立於幀率
-            Vector3 move = new Vector3(SensorExample.accx , 0, SensorExample.accy) * speed * Time.deltaTime;
+        // if (moving_on)
+        // {
+        //     Vector3 gyroRotationRate = new Vector3(SensorExample.GYROX, SensorExample.GYROY, SensorExample.GYROZ);
+        //     // 增加一个缩放系数，例如 10.0f，您可以根据需要调整这个值
+        //     float scale = 100.0f;
+        //     Quaternion targetRotation = Quaternion.Euler(gyroRotationRate * scale * Time.deltaTime * Mathf.Rad2Deg);
+        //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5); // 使用Slerp平滑旋
 
-            // 更新Camera的位置
-            transform.Translate(move, Space.World);
-        
-        
-        
-        }
+
+        //     float speed = 100.0f;
+        //     // 將加速度轉換為移動向量，這裡乘以Time.deltaTime是為了使移動速度獨立於幀率
+        //     Vector3 move = new Vector3(SensorExample.accx , 0, SensorExample.accy) * speed * Time.deltaTime;
+
+        //     // 更新Camera的位置
+        //     transform.Translate(move, Space.World);
+        // }
         ////////////////////////////////////////////////////////////////////////////////////////
-        // // 處理攝像機的旋轉
-        // float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        // float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        // 處理攝像機的旋轉
+        if (Input.GetMouseButton(1))
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // xRotation -= mouseY;
-        // xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        // 旋轉攝像機而不是Rigidbody，以免影響物理計算
-        // transform.localRotation = Quaternion.Euler(xRotation, transform.localEulerAngles.y + mouseX, 0f);
-        // transform.localRotation = Quaternion.Euler(Mathf.Clamp(-SensorExample.GYROY, -90f, 90f), transform.localEulerAngles.y + SensorExample.GYROX, 0f);
+            // 旋轉攝像機而不是Rigidbody，以免影響物理計算
+            transform.localRotation = Quaternion.Euler(xRotation, transform.localEulerAngles.y + mouseX, 0f);
+            transform.localRotation = Quaternion.Euler(Mathf.Clamp(-SensorExample.GYROY, -90f, 90f), transform.localEulerAngles.y + SensorExample.GYROX, 0f);
+        }
+
     }
 
 
