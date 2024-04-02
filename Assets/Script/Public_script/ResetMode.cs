@@ -31,11 +31,11 @@ public class ResetMode : MonoBehaviour
     // {
     //     GameObject.Find("SwishMode3").GetComponent<SwishMode3>().ResetMode3();
     // }
-    // // 重置mode4
-    // public void ResetMode4()
-    // {
-    //     GameObject.Find("SwishMode4").GetComponent<SwishMode4>().ResetMode4();
-    // }
+    // 重置mode4
+    public void ResetMode4()
+    {
+        GameObject.Find("Mode4").SetActive(false);
+    }
     // 重置mode5
     public void ResetMode5()
     {
@@ -54,10 +54,10 @@ public class ResetMode : MonoBehaviour
         // getcomponent<GetRange>().RangeY = 0;
         // getcomponent<GetRange>().RangeZ = 0;
     }
-    // // 重置mode6
-    // public void ResetMode6()
-    // {
-    //     GameObject.Find("SwishMode6").GetComponent<SwishMode6>().ResetMode6();
-    // }
+    // 重置mode6
+    public void ResetMode6()
+    {
+        GameObject.Find("Mode6").SetActive(false);
+    }
 
 }

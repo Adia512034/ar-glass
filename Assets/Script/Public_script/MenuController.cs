@@ -68,6 +68,7 @@ public class MenuController : MonoBehaviour
                 break;
             case "4":
                 SwitchMode = 4;
+                SwishMode4.SetActive(true);
                 break;
             case "5":
                 SwitchMode = 5;
@@ -75,6 +76,7 @@ public class MenuController : MonoBehaviour
                 break;
             case "6":
                 SwitchMode = 6;
+                SwishMode6.SetActive(true);
                 break;
             default:
                 SwitchMode = 0;
