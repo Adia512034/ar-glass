@@ -25,6 +25,7 @@ public class AddImagesToList : MonoBehaviour
     public void add_item_to_scense()
     {
             Vector3 creationPoint = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera; // 
+            creationPoint.y = creationPoint.y - 100;
             Instantiate(objectPrefab, creationPoint, Quaternion.identity);
 
     }
