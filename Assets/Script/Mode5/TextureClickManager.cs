@@ -79,6 +79,18 @@ public class TextureClickManager : MonoBehaviour
                 Vector3 newPosition = hit.point + offset;
                 newPosition.y = originalY;
                 selectedObject.transform.position = newPosition;
+
+                // 判断物体是否超出摄像机视野
+                Vector3 screenPoint = renderCamera.WorldToViewportPoint(selectedObject.transform.position);
+                bool isOutside = screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
+                if (isOutside)
+                {
+                    Debug.Log("物体超出屏幕范围，即将销毁");
+                    // 这里你可以销毁物体或者做其他处理
+                    Destroy(selectedObject);
+                    isDragging = false; // 停止拖动逻辑
+                    
+                }
             }
         }
     }

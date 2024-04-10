@@ -19,7 +19,7 @@ public class User_moving : MonoBehaviour
 
         // 鎖定Rigidbody的旋轉軸，防止它在移動時翻滾或傾斜
         // rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionY;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        // transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void Update()

@@ -19,6 +19,7 @@ public class Ganzin2DScreenPosCtrl : MonoBehaviour
     // public GameObject circlePrefab;
     public Image      image;
     public Image      image2;
+    public Canvas canvas; // 確保在Inspector中指定這個canvas
 
     void Awake()
     {
@@ -29,57 +30,75 @@ public class Ganzin2DScreenPosCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EyetrackerManager = FindObjectOfType<GanzinEyetrackerManager>();
-        DisplayProfiler = FindObjectOfType<GanzinDisplayProfiler>();
-        TargetCanvas = GetComponentInParent<Canvas>();
+        // EyetrackerManager = FindObjectOfType<GanzinEyetrackerManager>();
+        // DisplayProfiler = FindObjectOfType<GanzinDisplayProfiler>();
+        // TargetCanvas = GetComponentInParent<Canvas>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        IEyetracker eyetracker = EyetrackerManager.GetEyetracker() as IEyetracker;
-        if (eyetracker.Status != IEyetracker.EyetrackerStatus.ACTIVE)
-        {
-            // Debug.Log("IEyetracker test open fail");
-            return;
-        }
+        //取得滑鼠座標
+        Vector2 mousePos = Input.mousePosition;
+        // Debug.Log("mousePos: " + mousePos);
+        // Debug.Log("mousePos.x: " + mousePos.x);
+        // Debug.Log("mousePos.y: " + mousePos.y);
 
-        Vector2 position = Vector2.zero;
-        if (eyetracker != null && eyetracker.GetEyetrackingData(out EventArgs et_data))
-        {
-            var data = et_data as EyetrackingData;
-            if (data != null)
-            {
-                // You can get eyetracking data here
-                // Take Screen gaze position for example:
-                position = data.combined_screen_gaze.position;
-                // float hitPointX = position.x * DisplayProfiler.DisplayResolution.x * 0.5f;
-                // float hitPointY = position.y * DisplayProfiler.DisplayResolution.y * 0.5f;
-                // textX.text = "X :"+position.x + ", " + position.x * 0.5f * 1920 + 960;
-                // textY.text = "Y :"+position.y + ", " + position.x * 0.5f * 1080 + 540;
-                if (position.x < -1 || position.y < -1 || position.x > 1 || position.y > 1)
-                {
-                    return;
-                }
-                CurrentGazePosition = new Vector2(position.x * 0.5f * 2448 + 2448/2,position.y * 0.5f * 1080 + 540);
-                this.image.gameObject.GetComponent<RectTransform>().position = CurrentGazePosition;
-                this.image2.gameObject.GetComponent<RectTransform>().position = CurrentGazePosition;
+         // 將滑鼠座標轉換為Canvas座標系統中的位置
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.GetComponent<RectTransform>(), 
+            mousePos, 
+            canvas.worldCamera, 
+            out Vector2 localPoint);
 
-                // this.gameObject.transform.position = new Vector2(   position.x * 0.5f * 1920 + 960,
-                //                                                     position.y * 0.5f * 1080 + 540);
+        // 將轉換後的座標應用於image和image2
+        image.rectTransform.anchoredPosition = localPoint;
+        image2.rectTransform.anchoredPosition = localPoint;
 
-                // Debug.Log("Hit Point X: " + hitPointX + ", Hit Point Y: " + hitPointY);
-                // Vector3 hitPoint = TargetCanvas.gameObject.transform.TransformPoint(new Vector2(hitPointX, hitPointY));
-                // Vector3 hitPoint = TargetCanvas.gameObject.transform.TransformPoint(position);
+
+        // IEyetracker eyetracker = EyetrackerManager.GetEyetracker() as IEyetracker;
+        // if (eyetracker.Status != IEyetracker.EyetrackerStatus.ACTIVE)
+        // {
+        //     // Debug.Log("IEyetracker test open fail");
+        //     return;
+        // }
+
+        // Vector2 position = Vector2.zero;
+        // if (eyetracker != null && eyetracker.GetEyetrackingData(out EventArgs et_data))
+        // {
+        //     var data = et_data as EyetrackingData;
+        //     if (data != null)
+        //     {
+        //         // You can get eyetracking data here
+        //         // Take Screen gaze position for example:
+        //         position = data.combined_screen_gaze.position;
+        //         // float hitPointX = position.x * DisplayProfiler.DisplayResolution.x * 0.5f;
+        //         // float hitPointY = position.y * DisplayProfiler.DisplayResolution.y * 0.5f;
+        //         // textX.text = "X :"+position.x + ", " + position.x * 0.5f * 1920 + 960;
+        //         // textY.text = "Y :"+position.y + ", " + position.x * 0.5f * 1080 + 540;
+        //         if (position.x < -1 || position.y < -1 || position.x > 1 || position.y > 1)
+        //         {
+        //             return;
+        //         }
+        //         CurrentGazePosition = new Vector2(position.x * 0.5f * 2448 + 2448/2,position.y * 0.5f * 1080 + 540);
+        //         this.image.gameObject.GetComponent<RectTransform>().position = CurrentGazePosition;
+        //         this.image2.gameObject.GetComponent<RectTransform>().position = CurrentGazePosition;
+
+        //         // this.gameObject.transform.position = new Vector2(   position.x * 0.5f * 1920 + 960,
+        //         //                                                     position.y * 0.5f * 1080 + 540);
+
+        //         // Debug.Log("Hit Point X: " + hitPointX + ", Hit Point Y: " + hitPointY);
+        //         // Vector3 hitPoint = TargetCanvas.gameObject.transform.TransformPoint(new Vector2(hitPointX, hitPointY));
+        //         // Vector3 hitPoint = TargetCanvas.gameObject.transform.TransformPoint(position);
         
-                // this.gameObject.transform.position = hitPoint;
-            }
-            else
-            {
-                // Debug.Log("get eye position fail ");
-            }
-        }
+        //         // this.gameObject.transform.position = hitPoint;
+        //     }
+        //     else
+        //     {
+        //         // Debug.Log("get eye position fail ");
+        //     }
+        // }
         // Debug.Log("Hit position: " + position);
     }
 }

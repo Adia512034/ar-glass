@@ -501,6 +501,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6880899200526266409}
+  - component: {fileID: -4358900131880582914}
+  - component: {fileID: 2900074754235114220}
   m_Layer: 6
   m_Name: antique_bookcase
   m_TagString: Untagged
@@ -516,7 +518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6545448523428051554}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 531.74, y: 290, z: 1340}
+  m_LocalPosition: {x: -376, y: 99.64033, z: 1349.9976}
   m_LocalScale: {x: 94.67011, y: 94.67011, z: 94.67011}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -524,6 +526,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4358900131880582914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545448523428051554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24923ca1b238a5a448f5a2394f542118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2900074754235114220
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545448523428051554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42788577, y: 1.664487, z: 1.9337349}
+  m_Center: {x: -0.016524345, y: -0.012117401, z: -0.06511495}
 --- !u!1 &7981490134020870516
 GameObject:
   m_ObjectHideFlags: 0

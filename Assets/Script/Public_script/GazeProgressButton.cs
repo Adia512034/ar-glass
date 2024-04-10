@@ -20,8 +20,8 @@ public class GazeProgressButton : MonoBehaviour
     // 模擬眼動儀的注視點，實際應用中需要替換為眼動儀數據
     private void UpdateGaze()
     {
-        // currentGazePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); // 用鼠標位置模擬
-        currentGazePosition = Ganzin2DScreenPosCtrl.CurrentGazePosition; // 用眼動儀數據模擬
+        currentGazePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); // 用鼠標位置模擬
+        // currentGazePosition = Ganzin2DScreenPosCtrl.CurrentGazePosition; // 用眼動儀數據模擬
         // Debug.Log("currentGazePosition :" + currentGazePosition);
     }
 

@@ -33,6 +33,15 @@ public class Draggable : MonoBehaviour
         {
             // 更新物体位置到新的鼠标世界坐标位置，加上初始偏移量
             transform.position = GetMouseWorldPos() + offset;
+
+            // 检查物体是否超出屏幕范围
+            Vector3 screenPosition = mainCamera.WorldToViewportPoint(transform.position);
+            Debug.Log("screenPosition: " + screenPosition);
+            if (screenPosition.x < 0 || screenPosition.x > 1 || screenPosition.y < 0 || screenPosition.y > 1)
+            {
+                Debug.Log("物体超出屏幕范围，即将销毁");
+                Destroy(gameObject); // 销毁物体
+            }
         }
     }
 

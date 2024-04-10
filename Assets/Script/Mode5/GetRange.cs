@@ -33,7 +33,7 @@ public class GetRange : MonoBehaviour
     //設定X參數
     public void GetrangeX()
     {
-        RangeX = 400;
+        RangeX = 200;
         //轉成float型別
         // RangeX = float.Parse(TofExample.valueRange2)/10;
         RangetextX.text = "X：" + $"{RangeX}" + "cm";
@@ -51,7 +51,7 @@ public class GetRange : MonoBehaviour
     //設定Z參數
     public void GetrangeZ()
     {
-        RangeZ = 400;
+        RangeZ = 200;
         //轉成float型別
         // RangeZ = float.Parse(TofExample.valueRange2)/10;
         RangetextZ.text = "Z：" + $"{RangeZ}" + "cm";
@@ -85,9 +85,9 @@ public class GetRange : MonoBehaviour
         ShowrawImage.gameObject.SetActive(true);
         User_moving.moving_on = true;
 
-        float RangetextTempX = (RangeX)/425.0f;
+        float RangetextTempX = (RangeX)/200.0f;
         float RangetextTempY = (RangeY)/300.0f;
-        float RangetextTempZ = (RangeZ)/425.0f;
+        float RangetextTempZ = (RangeZ)/200.0f;
         Debug.Log("RangetextTempX :" + RangetextTempX);
         Debug.Log("RangetextTempY :" + RangetextTempY);
         Debug.Log("RangetextTempZ :" + RangetextTempZ);
